@@ -2,7 +2,19 @@
 
 This document defines the standard Git branching strategy, workflow rules, hotfix procedures, and rollback strategies for our repositories.
 
-## 📊 Visual Representation
+## � Terminology & Glossary
+
+Different version control platforms use different names for the same concepts. To ensure everyone can easily understand and relate according to their specific platform, here is a mapping of common terms:
+
+| Concept / Action | GitHub | Azure DevOps (Repos) | GitLab | Description |
+| :--- | :--- | :--- | :--- | :--- |
+| **Pull Request / Merge Request** | Pull Request (PR) | Pull Request (PR) | Merge Request (MR) | A formal request to review and merge code from one branch into another (e.g., merging a `feature` branch into `dev`). |
+| **Repository (Repo)** | Repository | Repository | Project / Repository | The storage space where your project's files, branches, and commit history live. |
+| **Branch** | Branch | Branch | Branch | An independent line of development (e.g., `main`, `dev`, `feature/*`). |
+| **Commit** | Commit | Commit | Commit | A saved snapshot of changes to the codebase. |
+| **CI/CD Pipeline** | GitHub Actions | Azure Pipelines | GitLab CI/CD | Automated workflows that build, test, and deploy code when changes occur. |
+
+## �📊 Visual Representation
 
 Here is a visual representation of how code flows from development to production.
 
