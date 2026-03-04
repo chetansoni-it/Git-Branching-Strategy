@@ -51,9 +51,9 @@ flowchart TD
     Hotfix -. "3. Sync MR" .-> QA
 
     %% Styling
-    classDef protected fill:#f9f,stroke:#333,stroke-width:2px;
-    classDef temp fill:#bbf,stroke:#333,stroke-width:1px;
-    classDef hotfix fill:#ff9999,stroke:#333,stroke-width:2px;
+    classDef protected fill:#f9f,stroke:#333,stroke-width:2px,color:#000000;
+    classDef temp fill:#bbf,stroke:#333,stroke-width:1px,color:#000000;
+    classDef hotfix fill:#ff9999,stroke:#333,stroke-width:2px,color:#000000;
     
     class Main,QA,Dev protected;
     class Feature,Bug temp;
