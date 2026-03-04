@@ -156,10 +156,31 @@ git push origin hotfix/JNL-911-payment-crash
 If a bad deployment happens, we need a standard way to rollback. Because `main`, `qa`, and `dev` are protected, **we do not force-push (`git push -f`)**. Instead, we revert the problematic merge commit.
 
 ### Scenario A: Rolling back `dev` or `qa`
-Frequent changes happen here. It is often faster to just submit a `bug/*` branch MR to fix the issue than to revert a massive merge. If you must revert:
-1. Identify the merge commit hash.
-2. Revert it on a new branch.
-3. Submit an MR.
+Frequent changes happen here. It is often faster to just submit a `bug/*` branch MR to fix the issue than to revert a massive merge. If you must revert, follow these steps:
+
+```bash
+# 1. Checkout the target branch (e.g., dev) and get latest
+git checkout dev
+git pull origin dev
+
+# 2. Find the merge commit you want to undo
+git log --oneline
+# (Example output)
+# b4c5d6e Merge branch 'feature/JNL-101-add-login' into 'dev'
+# a1b2c3d Previous commit
+
+# 3. Create a rollback branch from the target branch
+git checkout -b rollback/revert-b4c5d6e
+
+# 4. Revert the merge commit
+# Note: For merge commits, you must specify the parent line using -m 1
+git revert -m 1 b4c5d6e
+
+# 5. Commit, push, and create MR to the target branch
+git commit -m "revert: rollback feature JNL-101 (commit b4c5d6e)"
+git push origin rollback/revert-b4c5d6e
+```
+*After pushing, open an MR from `rollback/revert-b4c5d6e` ➡️ `dev` and have it approved.*
 
 ### Scenario B: Rolling back `main` (Production Emergency)
 If code hit `main` and broke production, you must revert the faulty merge commit securely.
