@@ -86,14 +86,14 @@ All new features and normal bugs should branch from `dev` and merge back into `d
 ### 1. Start Work (Branching from `dev`)
 Always make sure your local `dev` is up-to-date before creating a new branch.
 ```bash
-# 1. Checkout the dev branch
-git checkout dev
+# 1. Switch to the dev branch
+git switch dev
 
 # 2. Pull latest changes
 git pull origin dev
 
 # 3. Create and switch to your feature/bug branch
-git checkout -b feature/JNL-101-add-login
+git switch -c feature/JNL-101-add-login
 ```
 
 ### 2. Commit and Push Work
@@ -127,12 +127,12 @@ A hotfix is used exclusively for dealing with critical bugs occurring directly i
 
 ### Hotfix Workflow
 ```bash
-# 1. Checkout main and pull latest
-git checkout main
+# 1. Switch to main and pull latest
+git switch main
 git pull origin main
 
 # 2. Create hotfix branch
-git checkout -b hotfix/JNL-911-payment-crash
+git switch -c hotfix/JNL-911-payment-crash
 
 # ... perform the fix ...
 
@@ -159,8 +159,8 @@ If a bad deployment happens, we need a standard way to rollback. Because `main`,
 Frequent changes happen here. It is often faster to just submit a `bug/*` branch MR to fix the issue than to revert a massive merge. If you must revert, follow these steps:
 
 ```bash
-# 1. Checkout the target branch (e.g., dev) and get latest
-git checkout dev
+# 1. Switch to the target branch (e.g., dev) and get latest
+git switch dev
 git pull origin dev
 
 # 2. Find the merge commit you want to undo
@@ -170,7 +170,7 @@ git log --oneline
 # a1b2c3d Previous commit
 
 # 3. Create a rollback branch from the target branch
-git checkout -b rollback/revert-b4c5d6e
+git switch -c rollback/revert-b4c5d6e
 
 # 4. Revert the merge commit
 # Note: For merge commits, you must specify the parent line using -m 1
@@ -186,8 +186,8 @@ git push origin rollback/revert-b4c5d6e
 If code hit `main` and broke production, you must revert the faulty merge commit securely.
 
 ```bash
-# 1. Checkout main and get latest
-git checkout main
+# 1. Switch to main and get latest
+git switch main
 git pull origin main
 
 # 2. Find the merge commit you want to undo
@@ -197,7 +197,7 @@ git log --oneline
 # f9e8d7c Commit from older release
 
 # 3. Create a rollback branch
-git checkout -b rollback/revert-a1b2c3d
+git switch -c rollback/revert-a1b2c3d
 
 # 4. Revert the merge commit 
 # Note: For merge commits, you must specify the parent line using -m 1
